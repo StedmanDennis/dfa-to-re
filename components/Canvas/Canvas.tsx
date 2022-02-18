@@ -1,16 +1,11 @@
-import { useEffect, useRef } from "react"
 import cytoscape from "cytoscape"
-
-interface TestData {
-    nodes: cytoscape.NodeDefinition[]
-    edges: cytoscape.EdgeDefinition[]
-}
+import { useEffect, useRef } from "react"
 
 interface props {
     graphInstance: cytoscape.Core
 }
 
-export function Canvas({graphInstance}: props) {
+export function Canvas({graphInstance}:props) {
     const canvasRef = useRef<HTMLDivElement>(null)
     
     useEffect(()=>{

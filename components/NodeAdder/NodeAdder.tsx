@@ -1,11 +1,11 @@
 import { Button, Checkbox, FormControlLabel } from "@mui/material";
 import { ChangeEvent, useState } from "react";
 
-interface props {
-    addNode: (node: cytoscape.NodeDataDefinition) => void
+interface props{
+    addNode: (edge: cytoscape.NodeDataDefinition) => void
 }
 
-export function NodeAdder({addNode}: props) {
+export function NodeAdder({addNode}:props) {
     const [start, setStart] = useState(false)
     const [final, setFinal] = useState(false)
 
