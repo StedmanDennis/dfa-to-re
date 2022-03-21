@@ -1,4 +1,5 @@
 import { Button } from "@mui/material"
+import SwapHorizIcon from '@mui/icons-material/SwapHoriz';
 import cytoscape from "cytoscape"
 import { useState } from "react"
 import { EdgeConfig } from "../EdgeConfig/EdgeConfig"
@@ -32,7 +33,10 @@ export function GraphConfig({graphInstance, nodeList, edgeList}: props) {
     const config = mode === Mode.Node ? <NodeConfig nodeList={nodeList} addNode={addNode}/> : <EdgeConfig nodeList={nodeList} edgeList={edgeList} addEdge={addEdge}/>
     return (
     <div style={{display: 'grid', gridTemplateRows: "auto 1fr auto"}}>
-        <div onClick={cycleMode}>{mode ? "Edge" : "Node"}</div>
+        <div style={{display: 'grid', gridTemplateColumns: "1fr auto"}}>
+            <div>{mode ? "Edge" : "Node"}</div>
+            <SwapHorizIcon onClick={cycleMode}></SwapHorizIcon>
+        </div>
         {config}
         <Button onClick={startConversion} >Start</Button>
     </div>)
