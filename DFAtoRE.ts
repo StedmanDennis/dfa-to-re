@@ -85,6 +85,12 @@ export function createGraphInstance(elements?: ElementsDefinition){
           subExpressions.push(expression.substring(start)); 
           return subExpressions.length > 1 ? `(${expression})` : expression
         }
+        function determineRemovalTarget(){
+          const minId = cy.nodes('[id = "start"]')[0].outgoers().nodes().min((node)=>{
+            return parseInt(node.data("id"))
+          })
+          return minId.ele
+        }
         function evaluateRemovalTarget(removalTarget: NodeSingular){
           console.log(`id: ${removalTarget.id()}`)
           cy.data("target", removalTarget)
@@ -166,12 +172,12 @@ export function createGraphInstance(elements?: ElementsDefinition){
         cy.data("starting-graph", cy.elements().copy())
         
         const reductionSummaries: ReductionSummary[] = []
-        let targetNode: NodeSingular | undefined = cy.nodes('[id != "final"][id != "start"]')[0]
+        let targetNode = determineRemovalTarget()
   
         while (targetNode) {
           const summary: ReductionSummary = evaluateRemovalTarget(targetNode)
           reductionSummaries.push(summary)
-          targetNode = cy.nodes('[id != "final"][id != "start"]')[0]
+          targetNode = determineRemovalTarget()
         }
         cy.data('reductionSummaries', reductionSummaries)
         cy.emit("stepTo", [0])
