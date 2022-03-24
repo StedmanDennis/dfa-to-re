@@ -19,7 +19,7 @@ interface props {
 export function GraphConfig({graphInstance, nodeList, edgeList}: props) {
     const [mode, setMode] = useState<Mode>(Mode.Node)
     function addNode(node: cytoscape.NodeDataDefinition){
-        graphInstance.add({group: 'nodes', data:{id: nodeList.length.toString()}, ...node})
+        graphInstance.add({group: 'nodes', data:{id: nodeList.length.toString(), ...node}})
     }
     function addEdge(edge: cytoscape.EdgeDataDefinition){
         graphInstance.add({group: 'edges', data: edge})
