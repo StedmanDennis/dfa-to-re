@@ -12,6 +12,7 @@ export function Canvas({graphInstance}:props) {
         if (canvasRef.current) {
             console.log('mounted')
             graphInstance.mount(canvasRef.current)
+            graphInstance.center()
         }
     }, [canvasRef.current])
     return (
